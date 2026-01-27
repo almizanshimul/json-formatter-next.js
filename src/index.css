@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 270 50% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 270 50% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 50% 15%;
+
+    --primary: 271 80% 43%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 84% 39%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 270 20% 95%;
+    --muted-foreground: 270 10% 45%;
+
+    --accent: 271 80% 95%;
+    --accent-foreground: 271 80% 43%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 270 20% 90%;
+    --input: 270 20% 90%;
+    --ring: 271 80% 43%;
+
+    --radius: 0.75rem;
+
+    /* Custom JSON Formatter tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(271, 80%, 43%) 0%, hsl(271, 80%, 55%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(160, 84%, 39%) 0%, hsl(160, 84%, 50%) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(270, 20%, 98%) 0%, hsl(270, 20%, 95%) 100%);
+    
+    --shadow-glow-primary: 0 0 40px hsla(271, 80%, 43%, 0.15);
+    --shadow-glow-secondary: 0 0 40px hsla(160, 84%, 39%, 0.15);
+    --shadow-card: 0 4px 24px hsla(270, 50%, 15%, 0.08);
+    --shadow-button: 0 4px 16px hsla(271, 80%, 43%, 0.25);
+
+    --input-bg: 0 0% 100%;
+    --output-bg: 160 40% 98%;
+    --json-viewer-bg: 160 30% 97%;
+  }
+
+  .dark {
+    --background: 270 30% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 270 25% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 270 25% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 271 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 84% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 270 20% 18%;
+    --muted-foreground: 270 10% 60%;
+
+    --accent: 271 50% 20%;
+    --accent-foreground: 271 80% 70%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 160 84% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 270 20% 20%;
+    --input: 270 20% 20%;
+    --ring: 271 80% 60%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(271, 80%, 55%) 0%, hsl(271, 80%, 65%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(160, 84%, 45%) 0%, hsl(160, 84%, 55%) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(270, 25%, 10%) 0%, hsl(270, 25%, 8%) 100%);
+    
+    --shadow-glow-primary: 0 0 60px hsla(271, 80%, 55%, 0.2);
+    --shadow-glow-secondary: 0 0 60px hsla(160, 84%, 45%, 0.2);
+    --shadow-card: 0 4px 24px hsla(0, 0%, 0%, 0.3);
+    --shadow-button: 0 4px 20px hsla(271, 80%, 55%, 0.35);
+
+    --input-bg: 270 25% 15%;
+    --output-bg: 160 20% 12%;
+    --json-viewer-bg: 220 20% 13%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    @apply backdrop-blur-xl bg-card/80 border border-border/50;
+  }
+
+  .gradient-text-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .gradient-text-secondary {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-secondary);
+  }
+
+  .animate-glow-primary {
+    box-shadow: var(--shadow-glow-primary);
+  }
+
+  .animate-glow-secondary {
+    box-shadow: var(--shadow-glow-secondary);
+  }
+
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsla(271, 80%, 60%, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
